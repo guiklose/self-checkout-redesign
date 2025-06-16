@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
-export async function GET(req: NextRequest, { params }: { params: { code: string } }) {
-  const { code } = params;
+export async function GET(req: NextRequest, { params }: { params: Promise<{ code: string }> }) {
+  const { code } = await params;
 
   const filePath = path.join(process.cwd(), 'data.json');
   const file = fs.readFileSync(filePath, 'utf-8');
