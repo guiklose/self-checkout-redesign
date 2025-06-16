@@ -1,7 +1,11 @@
 "use client";
 import React from "react";
 
-type Product = { name: string; price: number };
+type Product = {
+  name: string;
+  price: number;
+  code: string;
+};
 
 export default function CartList({ products }: { products: Product[] }) {
   return (
@@ -18,9 +22,9 @@ export default function CartList({ products }: { products: Product[] }) {
             acc.push({ ...p, quantity: 1, totalPrice: p.price });
           }
           return acc;
-        }, []).map((p, i) => (
+        }, [] as any[]).map((p, i) => (
           <li className="text-black" key={i}>
-            {p.name} - R$ {p.totalPrice.toFixed(2)} {p.quantity > 1 && `- ${p.quantity} Unidades`}
+            {p.name} - R$ {p.totalPrice.toFixed(2)} {p.quantity > 1 && ` - ${p.quantity} Unidades`}
           </li>
         ))}
         </ul>
