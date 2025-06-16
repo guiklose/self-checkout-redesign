@@ -7,6 +7,11 @@ type Product = {
   code: string;
 };
 
+type CartItem = Product & {
+  quantity: number;
+  totalPrice: number;
+};
+
 export default function CartList({ products }: { products: Product[] }) {
   return (
     <div className="w-[35%]">
@@ -22,7 +27,7 @@ export default function CartList({ products }: { products: Product[] }) {
             acc.push({ ...p, quantity: 1, totalPrice: p.price });
           }
           return acc;
-        }, [] as any[]).map((p, i) => (
+        }, [] as CartItem[]).map((p, i) => (
           <li className="text-black" key={i}>
             {p.name} - R$ {p.totalPrice.toFixed(2)} {p.quantity > 1 && ` - ${p.quantity} Unidades`}
           </li>

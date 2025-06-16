@@ -1,13 +1,17 @@
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+
 import Banner from "@/app/components/Banner";
 import Footer from "@/app/components/Footer";
 
 const StartCheckout = () => {
   const router = useRouter();
 
-  // remove old stored cart.
-  localStorage.removeItem("products");
-  localStorage.removeItem("total");
+  // remove old stored cart when component mounts (client-side only)
+  useEffect(() => {
+    localStorage.removeItem("products");
+    localStorage.removeItem("total");
+  }, []);
 
   return (
     <div className="flex flex-col justify-between text-left min-h-screen bg-white shadow-lg w-full p-[20px]">

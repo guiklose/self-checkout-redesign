@@ -9,9 +9,15 @@ import Footer from "@/app/components/Footer";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+type Product = {
+  name: string;
+  price: number;
+  code: string;
+};
+
 export default function PaymentPage() {
   const router = useRouter();
-  const [products, setProducts] = useState<{ name: string; price: number }[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState(0);
 
   useEffect(() => {

@@ -8,10 +8,16 @@ import CartControls from "@/app/components/Buy/CartControls";
 
 import { useRouter } from "next/navigation";
 
+type Product = {
+  name: string;
+  price: number;
+  code: string;
+};
+
 export default function BuyPage() {
   const router = useRouter();
 
-  const [products, setProducts] = useState<{ name: string; price: number }[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState(0);
 
   useEffect(() => {

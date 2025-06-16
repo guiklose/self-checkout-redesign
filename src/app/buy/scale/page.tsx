@@ -8,10 +8,16 @@ import Banner from "@/app/components/Banner";
 import Footer from "@/app/components/Footer";
 import Image from "next/image";
 
+type Product = {
+  name: string;
+  price: number;
+  code: string;
+};
+
 export default function PlaceItemOnScaleScreen() {
   const router = useRouter();
 
-  const [products, setProducts] = useState<{ name: string; price: number }[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const savedProducts = localStorage.getItem("products");
