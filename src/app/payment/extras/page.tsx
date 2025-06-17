@@ -1,9 +1,11 @@
-'use client';
+"use client";
 
-import Banner from '@/app/components/Banner';
-import Footer from '@/app/components/Footer';
-import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+
+import Banner from "@/app/components/Banner";
+import Footer from "@/app/components/Footer";
+import ReturnButton from "@/app/components/ReturnButton";
 
 export default function PaymentScreen() {
   const router = useRouter();
@@ -24,7 +26,8 @@ export default function PaymentScreen() {
 
   const handleSubmit = () => {
     // Handle form submission logic here
-    console.log('Form submitted:', { wantBags, hasApp });
+    localStorage.setItem("wantBags", String(wantBags))
+    localStorage.setItem("hasApp", String(hasApp))
 
     router.push("/payment");
   };
@@ -54,8 +57,8 @@ export default function PaymentScreen() {
                 />
                 <div className={`w-6 h-6 border-2 rounded ${
                   wantBags
-                    ? 'bg-orange-600 border-orange-600'
-                    : 'bg-white border-gray-400'
+                    ? "bg-orange-600 border-orange-600"
+                    : "bg-white border-gray-400"
                 }`}>
                   {wantBags && (
                     <svg className="w-4 h-4 text-white absolute top-0.5 left-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -78,8 +81,8 @@ export default function PaymentScreen() {
                 />
                 <div className={`w-6 h-6 border-2 rounded ${
                   !wantBags
-                    ? 'bg-orange-600 border-orange-600'
-                    : 'bg-white border-gray-400'
+                    ? "bg-orange-600 border-orange-600"
+                    : "bg-white border-gray-400"
                 }`}>
                   {!wantBags && (
                     <svg className="w-4 h-4 text-white absolute top-0.5 left-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -110,8 +113,8 @@ export default function PaymentScreen() {
                 />
                 <div className={`w-6 h-6 border-2 rounded ${
                   hasApp
-                    ? 'bg-orange-600 border-orange-600'
-                    : 'bg-white border-gray-400'
+                    ? "bg-orange-600 border-orange-600"
+                    : "bg-white border-gray-400"
                 }`}>
                   {hasApp && (
                     <svg className="w-4 h-4 text-white absolute top-0.5 left-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -134,8 +137,8 @@ export default function PaymentScreen() {
                 />
                 <div className={`w-6 h-6 border-2 rounded ${
                   !hasApp
-                    ? 'bg-orange-600 border-orange-600'
-                    : 'bg-white border-gray-400'
+                    ? "bg-orange-600 border-orange-600"
+                    : "bg-white border-gray-400"
                 }`}>
                   {!hasApp && (
                     <svg className="w-4 h-4 text-white absolute top-0.5 left-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -151,7 +154,7 @@ export default function PaymentScreen() {
       </div>
 
       {/* Buttons */}
-      <div className="mt-8 space-y-4">
+      <div className="mt-8 flex flex-col space-y-4">
         <button
           onClick={handleSubmit}
           className="w-full bg-orange-500 hover:bg-orange-600 cursor-pointer text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
@@ -159,15 +162,7 @@ export default function PaymentScreen() {
           Prosseguir para pagamento
         </button>
 
-        <button
-          onClick={() => router.push("/buy")}
-          className="flex items-center justify-center w-full bg-green-600 cursor-pointer hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
-        >
-          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          Voltar
-        </button>
+        <ReturnButton route="/buy" />
       </div>
       <Footer />
     </div>

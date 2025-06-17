@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+import Image from "next/image";
+
 export default function PaymentPopup({
   total,
   setTotal,
@@ -43,9 +45,9 @@ export default function PaymentPopup({
   };
 
   const finishPayment = () => {
-    console.log(`total 1: `, total)
+    const hasApp = localStorage.getItem("hasApp");
 
-    if (!total) {
+    if ((!total) || ((hasApp === "true") && (total === 1))) {
       // Zera localStorage e vai pra rota de sucesso
       localStorage.removeItem("products");
       localStorage.removeItem("total");
@@ -124,7 +126,12 @@ export default function PaymentPopup({
             className="bg-green-700 cursor-pointer hover:bg-green-800 text-white font-bold py-2 px-6 rounded flex items-center justify-center gap-2 mx-auto"
             onClick={finishPayment}
           >
-            ⬅️ Voltar
+            <Image
+              src="/return.png"
+              alt="Return"
+              width={20}
+              height={20}
+            /> <p className="text-black">Voltar</p>
           </button>
         </>
       ) : (
@@ -154,7 +161,12 @@ export default function PaymentPopup({
                 className="bg-green-700 cursor-pointer hover:bg-green-800 text-white font-bold py-2 px-6 rounded flex items-center justify-center gap-2 mx-auto"
                 onClick={finishPayment}
               >
-                ⬅️ Voltar
+                <Image
+                  src="/return.png"
+                  alt="Return"
+                  width={20}
+                  height={20}
+                /> <p className="text-black">Voltar</p>
               </button>
             </div>
           </div>
