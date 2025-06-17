@@ -1,13 +1,10 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
 import Banner from "@/app/components/Banner";
 import Footer from "@/app/components/Footer";
+import ReturnButton from "@/app/components/ReturnButton";
 
 export default function HelpCalledScreen() {
-  const router = useRouter();
-
   return (
     <div className="flex flex-col justify-between text-left min-h-screen bg-white shadow-lg w-full p-[20px]">
       <Banner />
@@ -29,12 +26,7 @@ export default function HelpCalledScreen() {
         </div>
       </div>
 
-      <button
-        className="bg-green-700 cursor-pointer hover:bg-green-800 text-white font-bold py-2 px-6 rounded flex items-center justify-center gap-2 mx-auto"
-        onClick={() => router.back()}
-      >
-        ⬅️ Voltar
-      </button>
+      <ReturnButton route="back" />
 
       <Footer />
     </div>

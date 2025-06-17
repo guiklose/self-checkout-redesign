@@ -1,13 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import CartList from "@/app/components/Buy/CartList";
 import PaymentHeader from "@/app/components/Payment/PaymentHeader";
 import PaymentMethods from "@/app/components/Payment/PaymentMethods";
+import ReturnButton from "@/app/components/ReturnButton";
 import Banner from "@/app/components/Banner";
 import Footer from "@/app/components/Footer";
-
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
 type Product = {
   name: string;
@@ -16,7 +16,6 @@ type Product = {
 };
 
 export default function PaymentPage() {
-  const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState(0);
 
@@ -36,15 +35,10 @@ export default function PaymentPage() {
         <CartList products={products} />
 
         <div className="w-[45%] space-y-8">
-          <PaymentHeader total={total} />
+          <PaymentHeader total={total}/>
           <PaymentMethods total={total} setTotal={setTotal}/>
           <div className="flex justify-end">
-            <button
-              onClick={() => router.push("/payment/extras")}
-              className="bg-green-700 hover:bg-green-800 cursor-pointer text-white font-bold px-6 py-3 rounded flex items-center gap-2"
-            >
-              ⬅️ Voltar
-            </button>
+            <ReturnButton route="/payment/extras" />
           </div>
         </div>
       </div>

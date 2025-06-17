@@ -1,6 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
 
+import ReturnButton from "@/app/components/ReturnButton";
+
 export default function CartControls({ canProceed }: { canProceed: boolean }) {
   const router = useRouter();
 
@@ -14,12 +16,7 @@ export default function CartControls({ canProceed }: { canProceed: boolean }) {
           Prosseguir com a compra
         </button>
       )}
-      <button
-        className="flex cursor-pointer items-center gap-2 bg-green-700 hover:bg-green-800 text-white px-2 py-1 rounded-md"
-        onClick={() => router.push("/")}
-      >
-        <span className="text-2xl">⬅️</span> Voltar
-      </button>
+      <ReturnButton route="/" />
     </div>
   );
 }
