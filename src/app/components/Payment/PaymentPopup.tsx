@@ -47,7 +47,7 @@ export default function PaymentPopup({
   const finishPayment = () => {
     const hasApp = localStorage.getItem("hasApp");
 
-    if ((!total) || ((hasApp === "true") && (total === 1))) {
+    if ((!total) || ((hasApp === "true") && (total < 1))) {
       // Zera localStorage e vai pra rota de sucesso
       localStorage.removeItem("products");
       localStorage.removeItem("total");
@@ -110,9 +110,17 @@ export default function PaymentPopup({
             >
               Pagar
             </button>
+
             <button
-              className="w-full py-2 bg-orange-400 hover:bg-orange-600 text-white font-bold rounded cursor-pointer"
+              className="w-full py-2 bg-orange-400 hover:bg-orange-500 text-white font-bold rounded cursor-pointer"
               onClick={onClose}
+            >
+              Voltar
+            </button>
+
+            <button
+              className="w-full py-2 bg-red-600 hover:bg-red-900 text-white font-bold rounded cursor-pointer"
+              onClick={() => router.push("payment/cancelled")}
             >
               Cancelar
             </button>
@@ -159,7 +167,7 @@ export default function PaymentPopup({
               </button>
 
               <button
-                className="bg-green-700 cursor-pointer hover:bg-green-800 text-white font-bold py-2 px-6 rounded flex items-center justify-center gap-2 mx-auto"
+                className="bg-orange-400 cursor-pointer hover:bg-bg-orange-500 text-white font-bold py-2 px-6 rounded flex items-center justify-center gap-2 mx-auto"
                 onClick={finishPayment}
               >
                 <Image
