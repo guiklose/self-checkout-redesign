@@ -22,7 +22,7 @@ const PaymentScreen = ({
       {["Cartão de Crédito", "Cartão Débito", "PIX", "Vale Alimentação"].map((text, i) => (
         <button
           key={i}
-          className="w-[80%] h-[60px] bg-orange-400 hover:bg-orange-500 text-white font-bold rounded shadow cursor-pointer flex items-center justify-center"
+          className="w-[80%] h-[60px] bg-green-600 hover:bg-green-700 text-white font-bold rounded shadow cursor-pointer flex items-center justify-center"
           onClick={handlePaymentClick}
         >
           {text}

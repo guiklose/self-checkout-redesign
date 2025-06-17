@@ -9,7 +9,7 @@ export default function ReturnButton({ route }: { route: string }) {
   return (
     <button
       onClick={() => route !== "back" ? router.push(route) : router.back()}
-      className="bg-green-700 justify-center hover:bg-green-800 cursor-pointer text-white font-bold px-6 py-3 rounded flex items-center gap-2"
+      className="bg-orange-400 justify-center hover:bg-orange-500 cursor-pointer text-white font-bold px-6 py-3 rounded flex items-center gap-2"
     >
       <Image
         src="/return.png"

@@ -157,7 +157,7 @@ export default function PaymentScreen() {
       <div className="mt-8 flex flex-col space-y-4">
         <button
           onClick={handleSubmit}
-          className="w-full bg-orange-500 hover:bg-orange-600 cursor-pointer text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
+          className="w-full bg-green-600 hover:bg-green-700 cursor-pointer text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
         >
           Prosseguir para pagamento
         </button>

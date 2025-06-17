@@ -20,7 +20,7 @@ export default function BarcodeInput({
         <div className="flex justify-center">
           <button
             onClick={() => setShowInput(true)}
-            className="bg-orange-500 text-black font-bold mt-6 px-6 py-3 rounded-lg shadow hover:bg-orange-400 transition cursor-pointer"
+            className="bg-yellow-400 text-black font-bold mt-6 px-6 py-3 rounded-lg shadow hover:bg-yellow-600 transition cursor-pointer"
           >
             Digitar Código de Barras
           </button>
