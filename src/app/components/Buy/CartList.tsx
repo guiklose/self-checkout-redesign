@@ -5,11 +5,13 @@ type Product = {
   name: string;
   price: number;
   code: string;
+  weight: number;
 };
 
 type CartItem = Product & {
   quantity: number;
   totalPrice: number;
+  totalWeight: number;
 };
 
 export default function CartList({ products }: { products: Product[] }) {
@@ -23,8 +25,9 @@ export default function CartList({ products }: { products: Product[] }) {
           if (existing) {
             existing.quantity += 1;
             existing.totalPrice += p.price;
+            existing.totalWeight += p.weight;
           } else {
-            acc.push({ ...p, quantity: 1, totalPrice: p.price });
+            acc.push({ ...p, quantity: 1, totalPrice: p.price, totalWeight: p.weight });
           }
           return acc;
         }, [] as CartItem[]).map((p, i) => (
@@ -34,7 +37,7 @@ export default function CartList({ products }: { products: Product[] }) {
               <p>R$ {p.totalPrice.toFixed(2)}</p>
             </div>
             <div>
-              {p.quantity > 1 && `${p.quantity} Unidades`}
+              {p.quantity && `${p.quantity} Unidades x ${p.totalWeight}g`}
             </div>
           </li>
         ))}

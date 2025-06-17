@@ -12,6 +12,7 @@ type Product = {
   name: string;
   price: number;
   code: string;
+  weight: number;
 };
 
 export default function BuyPage() {
