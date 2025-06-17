@@ -132,7 +132,7 @@ export default function PaymentPopup({
             className="bg-green-700 cursor-pointer hover:bg-green-800 text-white font-bold py-2 px-6 rounded flex items-center justify-center gap-2 mx-auto"
             onClick={finishPayment}
           >
-            <p className="text-black">Finalizar Pagamento</p>
+            <p className="text-white">Finalizar Pagamento</p>
           </button>
         </>
       ) : (
