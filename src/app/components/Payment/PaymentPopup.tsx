@@ -79,22 +79,28 @@ export default function PaymentPopup({
             R$ {display()}
           </div>
 
-          <div className="grid grid-cols-3 gap-4 place-items-center mb-6">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-              <button
-                key={num}
-                onClick={() => handlePress(num.toString())}
-                className="w-16 h-16 border-2 border-orange-500 hover:bg-orange-600 cursor-pointer text-xl font-bold text-black rounded-md"
-              >
-                {num}
-              </button>
+          <div className="mb-6">
+            {[[1, 2, 3], [4, 5, 6], [7, 8, 9]].map((row, i) => (
+              <div key={i} className="flex p-1 justify-center">
+                {row.map((num) => (
+                  <button
+                    key={num}
+                    onClick={() => handlePress(num.toString())}
+                    className="w-16 h-16 border-2 m-2 border-orange-500 hover:bg-orange-600 cursor-pointer text-xl font-bold text-black rounded-md"
+                  >
+                    {num}
+                  </button>
+                ))}
+              </div>
             ))}
-            <button
-              onClick={() => handlePress("0")}
-              className="w-16 h-16 border-2 border-orange-500 hover:bg-orange-600 cursor-pointer text-black font-bold text-xl col-span-1 col-start-2 rounded-md"
-            >
-              0
-            </button>
+            <div className="flex justify-center">
+              <button
+                onClick={() => handlePress("0")}
+                className="w-16 h-16 border-2 border-orange-500 hover:bg-orange-600 cursor-pointer text-black font-bold text-xl rounded-md"
+              >
+                0
+              </button>
+            </div>
           </div>
 
           <div className="flex justify-between gap-4">
@@ -126,12 +132,7 @@ export default function PaymentPopup({
             className="bg-green-700 cursor-pointer hover:bg-green-800 text-white font-bold py-2 px-6 rounded flex items-center justify-center gap-2 mx-auto"
             onClick={finishPayment}
           >
-            <Image
-              src="/return.png"
-              alt="Return"
-              width={20}
-              height={20}
-            /> <p className="text-black">Voltar</p>
+            <p className="text-black">Finalizar Pagamento</p>
           </button>
         </>
       ) : (
