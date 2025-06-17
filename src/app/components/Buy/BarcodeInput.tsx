@@ -12,7 +12,7 @@ export default function BarcodeInput({
 
   return (
     <>
-      <p className="mt-4 text-center underline text-orange-400 font-bold">
+      <p className="mt-4 text-black font-bold">
         Passe seu produto no scanner ou digite o código de barras
       </p>
 
