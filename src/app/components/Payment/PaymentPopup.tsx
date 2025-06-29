@@ -19,6 +19,8 @@ export default function PaymentPopup({
   const [input, setInput] = useState("");
   const [step, setStep] = useState<"input" | "waiting" | "error">("input");
 
+  const hasApp = localStorage.getItem("hasApp");
+
   const handlePress = (digit: string) => {
     if (input.length >= 9) return;
     setInput(input + digit);
@@ -45,8 +47,6 @@ export default function PaymentPopup({
   };
 
   const finishPayment = () => {
-    const hasApp = localStorage.getItem("hasApp");
-
     if ((!total) || ((hasApp === "true") && (total < 1))) {
       // Zera localStorage e vai pra rota de sucesso
       localStorage.removeItem("products");
@@ -70,7 +70,7 @@ export default function PaymentPopup({
       {step === "input" ? (
         <>
           <h2 className="text-center text-black text-xl font-bold mb-4">
-            Valor Total, à pagar: R$ {total}
+            Valor Total, à pagar: R$ {hasApp ? (total - 1) : total}
           </h2>
           <p className="text-center text-black mb-6 font-semibold">
             Digite o valor que deseja pagar, nesse momento
