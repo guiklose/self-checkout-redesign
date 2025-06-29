@@ -16,7 +16,7 @@ export default function CartControls({ canProceed }: { canProceed: boolean }) {
           Prosseguir com a compra
         </button>
       )}
-      <ReturnButton route="/" />
+      <ReturnButton route="/" text="Cancelar Compra" />
     </div>
   );
 }

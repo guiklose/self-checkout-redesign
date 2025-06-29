@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function ReturnButton({ route }: { route: string }) {
+export default function ReturnButton({ route, text }: { route: string, text: string }) {
   const router = useRouter();
 
   return (
@@ -16,7 +16,7 @@ export default function ReturnButton({ route }: { route: string }) {
         alt="Return"
         width={20}
         height={20}
-      /> <p className="text-black">Voltar</p>
+      /> <p className="text-black">{text ? text : 'Voltar'}</p>
     </button>
   );
 }
