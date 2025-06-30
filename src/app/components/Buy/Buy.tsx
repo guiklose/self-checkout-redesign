@@ -1,32 +1,19 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
 import Image from "next/image";
 import CartList from "@/app/components/Buy/CartList";
 import CartSummary from "@/app/components/Buy/CartSummary";
 import BarcodeInput from "@/app/components/Buy/BarcodeInput";
 import CartControls from "@/app/components/Buy/CartControls";
+import { useCart } from "@/app/context/CartContext";
 
 import { useRouter } from "next/navigation";
-
-type Product = {
-  name: string;
-  price: number;
-  code: string;
-  weight: number;
-};
 
 export default function BuyPage() {
   const router = useRouter();
 
-  const [products, setProducts] = useState<Product[]>([]);
-  const [total, setTotal] = useState(0);
-
-  useEffect(() => {
-    const savedProducts = localStorage.getItem("products");
-    const savedTotal = localStorage.getItem("total");
-    if (savedProducts) setProducts(JSON.parse(savedProducts));
-    if (savedTotal) setTotal(Number(savedTotal));
-  }, []);
+  const { products, setProducts, total, setTotal } = useCart();
 
   const [error, setError] = useState('');
 
@@ -41,13 +28,10 @@ export default function BuyPage() {
       if (res.ok) {
         const product = await res.json();
         const newList = [...products, product];
-        const newTotal = (total + product.price).toFixed(2);
+        const newTotal = (Number(total) + product.price).toFixed(2);
 
         setProducts(newList);
         setTotal(newTotal);
-
-        localStorage.setItem("products", JSON.stringify(newList));
-        localStorage.setItem("total", String(newTotal));
 
         router.push("/buy/scale");
       } else {
@@ -62,7 +46,7 @@ export default function BuyPage() {
 
   return (
     <div className="flex justify-evenly h-[450px]">
-      <CartList products={products} />
+      <CartList />
 
       <div className="w-[35%] py-10">
         <CartSummary total={total} count={products.length} />
