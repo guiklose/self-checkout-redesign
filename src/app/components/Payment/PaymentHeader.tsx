@@ -13,12 +13,12 @@ export default function PaymentHeader({ total }: { total: number }) {
     <div>
       <h1 className="text-2xl font-bold text-black text-center">Bem Vindo ao Pagamento</h1>
       <p className="text-black text-center mt-2 text-lg font-semibold">
-        Valor Total: R$ {total.toFixed(2)}
+        Valor Total: R$ {Number(total).toFixed(2)}
       </p>
       <>
         {hasApp && (
           <p className="text-orange-500 text-center mt-2 text-lg font-semibold">
-            Valor Total, com Desconto do Clube: R$ {(total - 1).toFixed(2)}
+            Valor Total, com Desconto do Clube: R$ {Number(total - 1).toFixed(2)}
           </p>
         )}
       </>
